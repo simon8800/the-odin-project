@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice() {
+            // Get rock paper or scissors based on random number 1-3
+            
+            // Generate random number between 1-3
+            let number = Math.random() * 3 + 1;
+            number = Math.floor(number);
+            // Based on number, return a choice
+            let choice = ''
+            switch(number) {
+                case 1:
+                    choice = 'rock';
+                    break;
+                case 2:
+                    choice = 'paper';
+                    break;
+                case 3:
+                    choice = 'scissors';
+                    break;
+                default:
+                    choice = 'rock';
+            }
+
+            return choice;
+        }
+
+        function getPlayerChoice() {
+            let choice = prompt("Enter your choice: ")
+            return choice.toLowerCase();
+        }
+
+        function toCapCase(word) {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+
+        function playRound(computerSelection, playerSelection) {
+            console.log(computerSelection, playerSelection);
+            // If cpu == player -> draw. cases first, easy peasy
+            if (computerSelection == playerSelection) {
+                let drawSelection = toCapCase(computerSelection);
+                console.log(`It's a draw! You both chose ${drawSelection}.`)
+                // if computer wins conditions
+            } else if ((computerSelection == 'rock' && playerSelection == 'scissors') || (computerSelection == 'scissors' && playerSelection == 'paper') || (computerSelection == 'paper' && playerSelection == 'rock')) {
+                console.log(`You lose! ${toCapCase(computerSelection)} beats ${toCapCase(playerSelection)}`)
+                // else player wins
+            } else {
+                console.log(`You win! ${toCapCase(playerSelection)} beats ${toCapCase(computerSelection)}`)
+            }
+        }
+
+        for (let i = 0; i < 5; i++) {
+            let computer = getComputerChoice();
+            let player = getPlayerChoice();
+            playRound(computer, player)
+        }
+    </script>
+</body>
+</html>
