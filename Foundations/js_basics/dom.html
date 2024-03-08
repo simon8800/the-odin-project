@@ -1,37 +1,62 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping list example</title>
-    <style>
-      li {
-        margin-bottom: 10px;
-      }
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shopping list example</title>
+        <style>
+            li {
+                margin-bottom: 10px;
+            }
 
-      li button {
-        font-size: 12px;
-        margin-left: 20px;
-        color: #666;
-      }
-    </style>
-  </head>
-  <body>
+            li button {
+                font-size: 12px;
+                margin-left: 20px;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>My shopping list</h1>
 
-    <h1>My shopping list</h1>
+        <div>
+            <label for="item">Enter a new item:</label>
+            <input type="text" name="item" id="item" />
+            <button>Add item</button>
+        </div>
 
-    <div>
-      <label for="item">Enter a new item:</label>
-      <input type="text" name="item" id="item">
-      <button>Add item</button>
-    </div>
+        <ul></ul>
 
-    <ul>
+        <script>
+			function onAddItem() {
+				let newItem = input.value;
+				input.value = '';
+				item = listItem(newItem);
+				uList.appendChild(item);
+				input.focus();
+			}
 
-    </ul>
+			function listItem(item) {
+				let li = document.createElement('li');
+				let span = document.createElement('span');
+				let btn = document.createElement('button');
+				span.textContent = item;
+				btn.textContent = "Delete"
+				btn.addEventListener('click', onDelete);
+				li.appendChild(span);
+				li.appendChild(btn);
+				return li;
+			}
 
-    <script>
+			function onDelete(e) {
+				e.target.parentNode.remove();
+				input.focus();
+			}
 
-    </script>
-  </body>
+			let uList = document.querySelector('ul');
+			let input = document.querySelector('input')
+			let button = document.querySelector('button')
+			button.addEventListener('click', onAddItem)
+		</script>
+    </body>
 </html>
